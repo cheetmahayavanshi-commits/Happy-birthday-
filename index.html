@@ -264,27 +264,28 @@ document.body.appendChild(s);
 
 }
 
-gift.onclick=()=>{
+const gift = document.getElementById("gift");
+const welcome = document.getElementById("welcome");
+const main = document.getElementById("main");
+const title = document.getElementById("title");
 
-gift.style.transform="scale(12) rotate(720deg)";
+gift.onclick = () => {
 
-gift.style.opacity=0;
+    gift.style.transform = "scale(12) rotate(720deg)";
+    gift.style.opacity = "0";
 
-setTimeout(()=>{
+    setTimeout(() => {
 
-welcome.classList.add("hidden");
+        welcome.classList.add("hidden");
+        main.classList.remove("hidden");
 
-main.classList.remove("hidden");
+        setTimeout(() => {
+            title.classList.add("show");
+        }, 400);
 
-setTimeout(()=>{
+    }, 700);
 
-title.classList.add("show");
-
-},400);
-
-},700);
-
-}
+};
 
 /* ===========================
 PART 2
@@ -330,9 +331,13 @@ envelope.innerHTML=`
 
 document.body.appendChild(envelope);
 
-envelope.onclick=()=>{
-  envelope.classList.add("hidden");
-  letter.classList.remove("hidden");
+envelope.onclick = () => {
+    envelope.classList.add("hidden");
+    letter.classList.remove("hidden");
+
+    typing.innerHTML = "";
+    i = 0;
+    type();
 };
 
 document.body.appendChild(letter);
@@ -441,11 +446,11 @@ document.head.appendChild(style);
 // Continue button
 
 
-const msg=
+const msg = `
+Happy Sweet 16, Panda 🐼❤️
+`;
 
-`.
-
-Happy Sweet 16, Panda 🐼❤️`;
+let i = 0;
 
 let i=0;
 
