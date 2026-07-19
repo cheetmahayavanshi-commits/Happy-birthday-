@@ -317,6 +317,23 @@ See Memories 📸
 </button>
 
 `;
+  const envelope=document.createElement("section");
+
+envelope.id="envelope";
+
+envelope.className="hidden";
+
+envelope.innerHTML=`
+<h1>💌</h1>
+<h2>Tap the Letter</h2>
+`;
+
+document.body.appendChild(envelope);
+
+envelope.onclick=()=>{
+  envelope.classList.add("hidden");
+  letter.classList.remove("hidden");
+};
 
 document.body.appendChild(letter);
 
@@ -333,12 +350,7 @@ gallery.innerHTML=`
 
 <h1>Our Memories 🐼</h1>
 <div class="gallery">
-  <img src="IMG_20260719_171823.jpg" alt="Memory 1">
-  <img src="IMG_20260719_171843.jpg" alt="Memory 2">
-  <img src="IMG_20260719_171901.jpg" alt="Memory 3">
-  <img src="IMG_20260719_172009.jpg" alt="Memory 4">
-  <img src="IMG_20260719_200225.jpg" alt="Memory 5">
-  <img src="IMG_20260719_200241.jpg" alt="Memory 6">
+  <img id="slider" src="IMG_20260719_171823.jpg" alt="Memory">
 </div>
 
 <button id="cakeBtn">
@@ -429,16 +441,12 @@ document.head.appendChild(style);
 // Continue button
 
 next.onclick=()=>{
-
-main.classList.add("hidden");
-
-letter.classList.remove("hidden");
-
+  main.classList.add("hidden");
+  envelope.classList.remove("hidden");
+  }
 const msg=
 
-`YOUR MESSAGE WILL COME HERE.
-
-Replace this text with your own birthday message.
+`.
 
 Happy Sweet 16, Panda 🐼❤️`;
 
@@ -839,4 +847,22 @@ fireworks();
 }
 
 },5000);
+  const photos = [
+  "IMG_20260719_171823.jpg",
+  "IMG_20260719_171843.jpg",
+  "IMG_20260719_171901.jpg",
+  "IMG_20260719_172009.jpg",
+  "IMG_20260719_200225.jpg",
+  "IMG_20260719_200241.jpg"
+];
+
+let currentPhoto = 0;
+
+setInterval(() => {
+  const slider = document.getElementById("slider");
+  if (slider && !gallery.classList.contains("hidden")) {
+    currentPhoto = (currentPhoto + 1) % photos.length;
+    slider.src = photos[currentPhoto];
+  }
+}, 3000);
 </script>
