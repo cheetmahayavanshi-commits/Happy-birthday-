@@ -762,7 +762,6 @@ found++;
 document.getElementById("score").innerHTML=
 "Found "+found+" / 5 🐼";
 
-
 if(found==5){
 
 setTimeout(()=>{
@@ -771,9 +770,15 @@ pandaGame.classList.add("hidden");
 
 final.classList.remove("hidden");
 
+confetti();
+
+fireworks();
+
+music.play();
+
 },800);
 
-}
+  }
 
 };
 
