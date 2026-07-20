@@ -836,6 +836,15 @@ setTimeout(fireworks,1800);
   /* ===========================
 PART 4 - FINAL
 ===========================*/
+  const music=document.createElement("audio");
+
+music.src="nastelbom-happy-birthday-469282.mp3";
+
+music.loop=true;
+
+music.volume=0.5;
+
+document.body.appendChild(music);
 
 // Floating balloons
 
@@ -991,6 +1000,7 @@ h.remove();
 
 
 // Final celebration
+let musicStarted=false;
 
 setInterval(()=>{
 
@@ -1000,7 +1010,16 @@ confetti();
 
 fireworks();
 
+if(!musicStarted){
+
+music.play();
+
+musicStarted=true;
+
+}
+
 }
 
 },5000);
+
 </script>
