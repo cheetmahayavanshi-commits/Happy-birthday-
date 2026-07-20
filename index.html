@@ -264,6 +264,7 @@ document.body.appendChild(s);
 }
 
 gift.onclick=()=>{
+  music.play();
 
 gift.style.transform="scale(12) rotate(720deg)";
 
@@ -705,6 +706,81 @@ Replay Surprise ❤️
 `;
 
 document.body.appendChild(cake);
+  const pandaGame=document.createElement("section");
+
+pandaGame.id="pandaGame";
+
+pandaGame.className="hidden";
+
+pandaGame.innerHTML=`
+
+<h1>Find the Cute Pandas 🐼</h1>
+
+<h2 id="score">Find 5 pandas 💖</h2>
+
+<div id="pandaArea"></div>
+
+`;
+
+document.body.appendChild(pandaGame);
+  const pandaImages=["🐼","🐼","🐼","🐼","🐼"];
+
+let found=0;
+
+function startPandaGame(){
+
+const area=document.getElementById("pandaArea");
+
+area.innerHTML="";
+
+found=0;
+
+document.getElementById("score").innerHTML="Find 5 pandas 💖";
+
+
+pandaImages.forEach(()=>{
+
+let p=document.createElement("div");
+
+p.innerHTML="🐼";
+
+p.className="gamePanda";
+
+p.style.left=Math.random()*80+"%";
+
+p.style.top=Math.random()*70+"%";
+
+
+p.onclick=()=>{
+
+p.remove();
+
+found++;
+
+document.getElementById("score").innerHTML=
+"Found "+found+" / 5 🐼";
+
+
+if(found==5){
+
+setTimeout(()=>{
+
+pandaGame.classList.add("hidden");
+
+final.classList.remove("hidden");
+
+},800);
+
+}
+
+};
+
+
+area.appendChild(p);
+
+});
+
+  }
 
 
 // Cake button
@@ -771,6 +847,41 @@ opacity:0;
 }
 
 }
+#pandaArea{
+
+position:relative;
+
+width:90%;
+
+max-width:700px;
+
+height:500px;
+
+margin-top:30px;
+
+}
+
+
+.gamePanda{
+
+position:absolute;
+
+font-size:70px;
+
+cursor:pointer;
+
+animation:bounce 2s infinite;
+
+transition:.3s;
+
+}
+
+
+.gamePanda:hover{
+
+transform:scale(1.2);
+
+  }
 
 `;
 
@@ -815,18 +926,13 @@ if(e.target.id=="cakeBox"){
 cakeBox.style.transform="scale(1.25) rotate(15deg)";
 
 fireworks();
-
 setTimeout(()=>{
 
 cake.classList.add("hidden");
 
-final.classList.remove("hidden");
+pandaGame.classList.remove("hidden");
 
-fireworks();
-
-setTimeout(fireworks,900);
-
-setTimeout(fireworks,1800);
+startPandaGame();
 
 },1400);
 
