@@ -296,7 +296,6 @@ const letter=document.createElement("section");
 letter.id="letter";
 
 letter.className="hidden";
-
 letter.innerHTML=`
 
 <h1 style="font-size:2.5rem">
@@ -305,7 +304,8 @@ A Letter For You 💌
 
 <div id="paper">
 
-<p id="typing"> </p>
+<p id="typing"></p>
+
 </div>
 
 <button id="galleryBtn">
@@ -364,30 +364,54 @@ const style=document.createElement("style");
 
 style.innerHTML=`
 
-#paper{
-
-width:90%;
-max-width:700px;
-
-background:white;
-
-padding:30px;
-
-border-radius:25px;
-
-box-shadow:0 20px 50px rgba(0,0,0,.12);
-
+#envelope{
+width:320px;
+height:220px;
+position:relative;
 margin-top:30px;
-
-font-size:18px;
-
-line-height:1.8;
-
-color:#444;
-
-min-height:220px;
-
+cursor:pointer;
+perspective:1000px;
 }
+
+#flap{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:110px;
+background:#ff6b9d;
+clip-path:polygon(0 0,100% 0,50% 100%);
+transform-origin:top;
+transition:1s;
+z-index:3;
+}
+
+#paper{
+position:absolute;
+left:10px;
+bottom:10px;
+width:300px;
+height:190px;
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+transform:translateY(60px);
+transition:1s;
+overflow:auto;
+z-index:1;
+font-size:18px;
+line-height:1.8;
+color:#444;
+}
+
+#envelope.open #flap{
+transform:rotateX(180deg);
+}
+
+#envelope.open #paper{
+transform:translateY(-70px);
+  }
 
 .photos{
 
@@ -434,18 +458,31 @@ document.head.appendChild(style);
 
 // Continue button
 
+// Continue button
+
 next.onclick=()=>{
 
 main.classList.add("hidden");
-
 letter.classList.remove("hidden");
 
-const msg=
+const envelope=document.getElementById("envelope");
+const galleryBtn=document.getElementById("galleryBtn");
+const typing=document.getElementById("typing");
+
+envelope.onclick=()=>{
+
+if(envelope.classList.contains("open")) return;
+
+envelope.classList.add("open");
+
+const msg=`YOUR MESSAGE WILL COME HERE.
 
 `A very beautiful happy birthday my panda , Madam jii , My naagin may your day go with full of happiness and enjoyment not only this day but your life be filled  only with happyness may all the things you wish for became true,even the smallest ones of your wishes comes true ,may god give all my happiness to you and worries to me , Make you much more strong and brave , and i am glad that you came in my life i dont know what i meant to you but i am happy to you came in my life my panda so plese never be sad and be happy for your whole life as one day is not enough to know how special your my baby girl, and thanku again for coming in my life
   
 
 Happy Sweet 16, Panda 🐼❤️`;
+
+typing.innerHTML="";
 
 let i=0;
 
@@ -454,16 +491,20 @@ function type(){
 if(i<msg.length){
 
 typing.innerHTML+=msg.charAt(i);
-
 i++;
-
 setTimeout(type,35);
 
-}
+}else{
+
+galleryBtn.classList.remove("hidden");
 
 }
 
-type();
+}
+
+setTimeout(type,700);
+
+};
 
 };
 
