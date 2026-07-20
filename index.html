@@ -676,8 +676,10 @@ Tap the Cake
 
 <h2>Deepanshi 🐼</h2>
 
-<div style="font-size:130px;">🐼🎁🧸</div>
-
+<img 
+src="0366db4045101e8d9b85b28e25c3391e.jpg"
+class="finalPhoto"
+alt="Birthday Memory">
 <p style="
 width:90%;
 max-width:650px;
@@ -883,7 +885,51 @@ transform:scale(1.2);
 
   }
 
-`;
+
+  .finalPhoto{
+
+width:250px;
+
+height:250px;
+
+object-fit:cover;
+
+border-radius:50%;
+
+margin-top:25px;
+
+box-shadow:0 10px 40px rgba(255,0,120,.3);
+
+animation:bounce 2s infinite;
+
+  }
+  .finalPhoto{
+
+animation:photoPop 1.2s ease;
+
+}
+
+
+@keyframes photoPop{
+
+0%{
+
+transform:scale(0);
+
+opacity:0;
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+  }
+  `;
 
 document.head.appendChild(style2);
 
