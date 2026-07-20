@@ -572,6 +572,23 @@ setTimeout(type,700);
 
 
 // Gallery button
+const images=[
+
+"IMG_20260719_171823.jpg",
+
+"IMG_20260719_171843.jpg",
+
+"IMG_20260719_171901.jpg",
+
+"IMG_20260719_172009.jpg",
+
+"IMG_20260719_200225.jpg",
+
+"IMG_20260719_200241.jpg"
+
+];
+
+let current=0;
 
 document.addEventListener("click",e=>{
 
@@ -581,9 +598,48 @@ letter.classList.add("hidden");
 
 gallery.classList.remove("hidden");
 
+const slide=document.getElementById("slide");
+
+const counter=document.getElementById("counter");
+
+function show(){
+
+slide.src=images[current];
+
+counter.innerHTML=(current+1)+" / "+images.length;
+
+}
+
+show();
+setInterval(()=>{
+
+current=(current+1)%images.length;
+
+show();
+
+},3000);
+
+document.getElementById("prev").onclick=()=>{
+
+current=(current-1+images.length)%images.length;
+
+show();
+
+};
+
+document.getElementById("nextSlide").onclick=()=>{
+
+current=(current+1)%images.length;
+
+show();
+
+};
+
 }
 
 });
+  
+
   /* ===========================
 PART 3
 Birthday Cake + Fireworks
